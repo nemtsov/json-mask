@@ -26,7 +26,8 @@ var mask = {
         }
       }
     }
-  }
+  },
+  c: {type: 'object'}
 }
 
 var obj = {
@@ -50,7 +51,8 @@ assert.deepEqual(maskedObj, {
         z: 22
       }
     }
- }]
+  }],
+  c: 44
 })
 
 console.log('ok')
