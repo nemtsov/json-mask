@@ -1,0 +1,17 @@
+{
+  "name": "fields-param-parser",
+  "version": "0.1.0",
+  "description": "HTTP api 'fields' query param parser.",
+  "main": "lib",
+  "scripts": {
+    "test": "node test/filter-test.js"
+  },
+  "keywords": [
+    "fields",
+    "projection",
+    "filter",
+    "query"
+  ],
+  "author": "nemtsov@gmail.com",
+  "license": "BSD"
+}
