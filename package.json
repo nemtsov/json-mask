@@ -4,7 +4,7 @@
   "description": "HTTP api 'fields' query param parser.",
   "main": "lib",
   "scripts": {
-    "test": "node test/filter-test.js"
+    "test": "node test/suite.js"
   },
   "keywords": [
     "fields",
@@ -15,3 +15,4 @@
   "author": "nemtsov@gmail.com",
   "license": "BSD"
 }
+
