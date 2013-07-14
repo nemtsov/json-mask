@@ -6,7 +6,7 @@ Keep just the parts of a JS object that you want, chopping off the rest.
 Use the same simple language [Google APIs Partial Responses](https://developers.google.com/+/api/#partial-responses)
 use in the `?fields=` query-string to specify the mask.
 
-###Example
+### Example
 
 Identify the fields you want to keep:
 ```js
@@ -56,8 +56,20 @@ assert.deepEqual(maskedObj, expectObj)
 ```
 
 
-Partial Responses Example
--------------------------
+## Syntax
+
+The syntax is loosely based on XPath:
+
+- ` a,b,c` comma-separated list will select multiple fields
+- ` a/b/c` path will select a field from its parent
+- `a(b,c)` sub-selection will select many fields from a parent
+- ` a/*/c` the star `*` wildcard will select all items in a field
+
+
+Take a look at `test/index-test.js` for examples of all of these and more.
+
+
+## Partial Responses Example
 
 Here's another example of using `json-mask` to implement the
 [Google API Partial Response](https://developers.google.com/+/api/#partial-responses)
@@ -87,7 +99,7 @@ server = http.createServer(function (req, res) {
 server.listen(4000)
 ```
 
-Get data:
+Let's test it:
 ```bash
 $ curl 'http://localhost:4000'
 {"firstName":"Mohandas","lastName":"Gandhi","aliases":[{"firstName":"Mahatma","lastName":"Gandhi"},{"firstName":"Bapu"}]}
