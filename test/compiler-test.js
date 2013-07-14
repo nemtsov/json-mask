@@ -1,12 +1,11 @@
 var compile = require('../lib/compiler')
   , assert = require('assert')
-  , c
 
 assert.deepEqual(compile('a'), {
     a: {type: 'object'}
 })
 
-c =assert.deepEqual(compile('a/*/c'), {
+assert.deepEqual(compile('a/*/c'), {
     a: {type: 'object', properties: {
       '*': {type: 'object', properties: {
         c: {type: 'object'}
