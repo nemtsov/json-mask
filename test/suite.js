@@ -7,4 +7,4 @@ require('./filter-test')
 console.log('[service]')
 require('./index-test')
 
-console.log('\nok');
+console.log('all ok');

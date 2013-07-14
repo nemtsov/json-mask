@@ -1,7 +1,7 @@
 {
-  "name": "fields-param-parser",
+  "name": "json-mask",
   "version": "0.1.0",
-  "description": "HTTP api 'fields' query param parser.",
+  "description": "Filter our parts of JS objects by providing a mask string.",
   "main": "lib",
   "scripts": {
     "test": "node test/suite.js"
@@ -13,6 +13,7 @@
     "query"
   ],
   "author": "nemtsov@gmail.com",
-  "license": "BSD"
+  "license": "MIT",
+  "devDependencies": {
+  }
 }
-

@@ -1,4 +1,4 @@
-var compile = require('../lib/compiler').compile
+var compile = require('../lib/compiler')
   , assert = require('assert')
   , c
 
