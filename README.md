@@ -1,6 +1,8 @@
 JSON Mask
 =========
 
+<img src="/logo.png" align="right" />
+
 Keep only the parts of a JS object that you need, by using a simple, query-string-friendly DSL.
 This is the same language that the Google APIs use in the `?fields=` query-string to generate
 [partial responses](https://developers.google.com/+/api/#partial-responses).
@@ -9,12 +11,12 @@ Example
 -------
 
 Specify the fields you want to keep:
-```
+```js
 var fields = 'url,object(content,attachments/url)'
 ```
 
 From this original object:
-```
+```js
 var originalObj = {
   id: 'z12gtjhq3qn2xxl2o224exwiqruvtda0i',
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
@@ -32,7 +34,7 @@ var originalObj = {
 ```
 
 Here's what you'll get back:
-```
+```js
 var expectObj = {
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
@@ -45,7 +47,7 @@ var expectObj = {
 ```
 
 Let's test that:
-```
+```js
 var mask = require('json-mask')
   , assert = require('assert')
   , maskedObj
@@ -62,7 +64,7 @@ Partial Responses Example
 Here's another example of using `json-mask` to implement the
 [Google API Partial Response](https://developers.google.com/+/api/#partial-responses)
 
-```
+```js
 var http = require('http')
   , url = require('url')
   , mask = require('json-mask')
@@ -88,7 +90,7 @@ server.listen(4000)
 ```
 
 Get data:
-```
+```bash
 $ curl 'http://localhost:4000'
 {"firstName":"Mohandas","lastName":"Gandhi","aliases":[{"firstName":"Mahatma","lastName":"Gandhi"},{"firstName":"Bapu"}]}
 
