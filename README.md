@@ -2,7 +2,7 @@ JSON Mask
 =========
 
 Keep only the parts of a JS object that you need, by using a simple, query-string-friendly DSL.
-This is the same language that the Google APIs use to generate
+This is the same language that the Google APIs use in the `?fields=` query-string to generate
 [partial responses](https://developers.google.com/+/api/#partial-responses).
 
 Example:
