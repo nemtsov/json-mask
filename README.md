@@ -7,7 +7,12 @@ This is the same language that the Google APIs use to generate
 
 Example:
 
-Here's the original object you want to mask:
+Specify the fields you want to keep:
+```
+var fields = 'url,object(content,attachments/url)'
+```
+
+From this original object:
 ```
 var object = {
   id: 'z12gtjhq3qn2xxl2o224exwiqruvtda0i',
@@ -25,14 +30,19 @@ var object = {
 }
 ```
 
-Specify the fields you want to keep:
+Now, let's run the mask and note that the object you get back
+just has the fields that we identified in the `fields` string:
 ```
-var fields = 'url,object(content,attachments/url)'
-```
+var mask = require('json-mask')
+  , maskedObj
+  , expectObj
 
-And this s what you get back:
-```
-var expect = {
+// compiling `fields` and running mask
+maskedObj = mask(object, fields)
+
+// `maskedObj` and `expectObj` will be identical
+// let's check that below with an assert
+expectObj = {
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
     content: 'A picture... of a space ship... launched from earth 40 years ago.',
@@ -41,13 +51,8 @@ var expect = {
     }]
   }
 }
-```
 
-Altogether now:
-```
-var mask = require('json-mask')
-  , assert = require('assert')
-assert.deepEqual(mask(object, fields), expect)
+assert.deepEqual(maskedObj, expectObj)
 ```
 
 
