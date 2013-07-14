@@ -14,7 +14,7 @@ var fields = 'url,object(content,attachments/url)'
 
 From this original object:
 ```
-var object = {
+var originalObj = {
   id: 'z12gtjhq3qn2xxl2o224exwiqruvtda0i',
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
@@ -30,19 +30,9 @@ var object = {
 }
 ```
 
-Now, let's run the mask and note that the object you get back
-just has the fields that we identified in the `fields` string:
+Here's what you'll get back:
 ```
-var mask = require('json-mask')
-  , maskedObj
-  , expectObj
-
-// compiling `fields` and running mask
-maskedObj = mask(object, fields)
-
-// `maskedObj` and `expectObj` will be identical
-// let's check that below with an assert
-expectObj = {
+var expectObj = {
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
     content: 'A picture... of a space ship... launched from earth 40 years ago.',
@@ -51,6 +41,15 @@ expectObj = {
     }]
   }
 }
+```
+
+Let's test that:
+```
+var mask = require('json-mask')
+  , assert = require('assert')
+  , maskedObj
+
+maskedObj = mask(originalObj, fields)
 
 assert.deepEqual(maskedObj, expectObj)
 ```
