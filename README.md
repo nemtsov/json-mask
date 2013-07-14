@@ -20,7 +20,7 @@ var originalObj = {
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
     objectType: 'note',
-    content: 'A picture... of a space ship... launched from earth 40 years ago.'
+    content: 'A picture... of a space ship... launched from earth 40 years ago.',
     attachments: [{
       objectType: 'image',
       url: 'http://apod.nasa.gov/apod/ap110908.html',
