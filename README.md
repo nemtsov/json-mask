@@ -1,9 +1,9 @@
-# JSON('s) Mask
+# JSON Mask
 
 <img src="/logo.png" align="right" width="267px" />
 
 Keep just the parts of a JS object that you want, chopping off the rest.
-Use the same language [Google APIs Partial Responses](https://developers.google.com/+/api/#partial-responses)
+Use the same simple language [Google APIs Partial Responses](https://developers.google.com/+/api/#partial-responses)
 use in the `?fields=` query-string to specify the mask.
 
 ###Example
