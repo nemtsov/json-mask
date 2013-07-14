@@ -5,7 +5,8 @@ Keep only the parts of a JS object that you need, by using a simple, query-strin
 This is the same language that the Google APIs use in the `?fields=` query-string to generate
 [partial responses](https://developers.google.com/+/api/#partial-responses).
 
-Example:
+Example
+-------
 
 Specify the fields you want to keep:
 ```
@@ -55,7 +56,10 @@ assert.deepEqual(maskedObj, expectObj)
 ```
 
 
-Here's an example of using `json-mask` to implement the
+Partial Responses Example
+-------------------------
+
+Here's another example of using `json-mask` to implement the
 [Google API Partial Response](https://developers.google.com/+/api/#partial-responses)
 
 ```
