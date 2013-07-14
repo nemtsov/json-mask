@@ -1,14 +1,12 @@
-JSON Mask
-=========
+# JSON Mask
 
-<img src="/logo.png" align="right" />
+<img src="/logo.png" align="right" width="267px" />
 
-Keep only the parts of a JS object that you need, by using a simple, query-string-friendly DSL.
+Keep only the parts of a JS object that you want by using a simple query-string-friendly DSL.
 This is the same language that the Google APIs use in the `?fields=` query-string to generate
 [partial responses](https://developers.google.com/+/api/#partial-responses).
 
-Example
--------
+###Example
 
 Specify the fields you want to keep:
 ```js
