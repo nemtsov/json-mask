@@ -69,9 +69,9 @@ The syntax is loosely based on XPath:
 Take a look at `test/index-test.js` for examples of all of these and more.
 
 
-## Partial Responses Example
+## Partial Responses Server Example
 
-Here's another example of using `json-mask` to implement the
+Here's an example of using `json-mask` to implement the
 [Google API Partial Response](https://developers.google.com/+/api/#partial-responses)
 
 ```js
