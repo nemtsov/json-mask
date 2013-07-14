@@ -5,13 +5,11 @@ Keep only the parts of a JS object that you need, by using a simple, query-strin
 This is the same language that the Google APIs use to generate
 [partial responses](https://developers.google.com/+/api/#partial-responses).
 
+Example:
 
+Here's the original object you want to mask:
 ```
-var mask = require('json-mask')
-  , assert = require('assert')
-  , object, fields, expect
-
-object = {
+var object = {
   id: 'z12gtjhq3qn2xxl2o224exwiqruvtda0i',
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
@@ -25,10 +23,16 @@ object = {
   },
   provider: {title: 'Google+'}
 }
+```
 
-fields = 'url,object(content,attachments/url)'
+Specify the fields you want to keep:
+```
+var fields = 'url,object(content,attachments/url)'
+```
 
-expect = {
+And this s what you get back:
+```
+var expect = {
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
     content: 'A picture... of a space ship... launched from earth 40 years ago.',
@@ -37,7 +41,12 @@ expect = {
     }]
   }
 }
+```
 
+Altogether now:
+```
+var mask = require('json-mask')
+  , assert = require('assert')
 assert.deepEqual(mask(object, fields), expect)
 ```
 
