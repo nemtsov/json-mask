@@ -1,4 +1,4 @@
-# JSON Mask
+# JSON Mask [![Build Status](https://secure.travis-ci.org/nemtsov/json-mask.png)](http://travis-ci.org/nemtsov/json-mask)
 
 <img src="/logo.png" align="right" width="267px" />
 
