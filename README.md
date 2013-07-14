@@ -1,19 +1,19 @@
-# JSON Mask
+# JSON('s) Mask
 
 <img src="/logo.png" align="right" width="267px" />
 
-Keep only the parts of a JS object that you want by using a simple query-string-friendly DSL.
-This is the same language that the Google APIs use in the `?fields=` query-string to generate
-[partial responses](https://developers.google.com/+/api/#partial-responses).
+Keep just the parts of a JS object that you want, chopping off the rest.
+Use the same language [Google APIs Partial Responses](https://developers.google.com/+/api/#partial-responses)
+use in the `?fields=` query-string to specify the mask.
 
 ###Example
 
-Specify the fields you want to keep:
+Identify the fields you want to keep:
 ```js
 var fields = 'url,object(content,attachments/url)'
 ```
 
-From this original object:
+From this sample object:
 ```js
 var originalObj = {
   id: 'z12gtjhq3qn2xxl2o224exwiqruvtda0i',
