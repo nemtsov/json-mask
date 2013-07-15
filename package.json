@@ -1,7 +1,7 @@
 {
   "name": "json-mask",
   "version": "0.1.0",
-  "description": "Filter our parts of JS objects by providing a mask string.",
+  "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
   "main": "lib/index",
   "scripts": {
     "test": "mocha",
@@ -13,10 +13,13 @@
     "_build-browser-min": "cat build/jsonMask.js | uglifyjs --comments > build/jsonMask.min.js"
   },
   "keywords": [
+    "mask",
+    "filter",
+    "select",
     "fields",
     "projection",
-    "filter",
-    "query"
+    "query",
+    "json"
   ],
   "author": "nemtsov@gmail.com",
   "license": "MIT",
