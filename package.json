@@ -6,7 +6,11 @@
   "scripts": {
     "test": "mocha",
     "test-watch": "mocha -w -G -R min",
-    "test-cov": "istanbul cover _mocha"
+    "test-cov": "istanbul cover _mocha",
+    "build-browser": "npm run-script _build-browser-full; npm run-script _build-browser-license; npm run-script _build-browser-min",
+    "_build-browser-full": "browserify -s jsonMask -e lib/index.js | sed -e \"s/\\[ *'.*' *\\]/;/\" > build/jsonMask.js",
+    "_build-browser-license": "cat build/copyright  | cat - build/jsonMask.js  | tee build/jsonMask.js",
+    "_build-browser-min": "cat build/jsonMask.js | uglifyjs --comments > build/jsonMask.min.js"
   },
   "keywords": [
     "fields",

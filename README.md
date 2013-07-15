@@ -23,6 +23,8 @@ This library has no dependencies; and that's a feature. It works in Node as well
 
 [![browser support](https://ci.testling.com/nemtsov/json-mask.png)](https://ci.testling.com/nemtsov/json-mask)
 
+**Note:** the browser build (minified / regular) is in the `/build` folder.
+
 ## Syntax
 
 The syntax is loosely based on XPath:
