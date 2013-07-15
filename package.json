@@ -28,15 +28,19 @@
   },
   "testling": {
     "browsers": [
-      "ie8",
-      "ie9",
-      "ie10",
-      "ff/15",
-      "chrome/20",
-      "opera/12",
-      "safari/5.1"
+      "ie/8..latest",
+      "firefox/16..latest",
+      "firefox/nightly",
+      "chrome/22..latest",
+      "chrome/canary",
+      "opera/12..latest",
+      "opera/next",
+      "safari/5.1..latest",
+      "ipad/6.0..latest",
+      "iphone/6.0..latest",
+      "android-browser/4.2..latest"
     ],
     "harness": "mocha",
-    "files": "test/*-test.js"
+    "files": "test/*.js"
   }
 }
