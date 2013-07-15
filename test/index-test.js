@@ -20,6 +20,14 @@ tests = [{
   , o: {a: 1, b: 1}
   , e: {a: 1}
 }, {
+    m: 'notEmptyStr'
+  , o: {notEmptyStr: ''}
+  , e: {notEmptyStr: ''}
+}, {
+    m: 'notEmptyNum'
+  , o: {notEmptyNum: 0}
+  , e: {notEmptyNum: 0}
+}, {
     m: 'a,b'
   , o: {a: 1, b: 1, c: 1}
   , e: {a: 1, b: 1}
@@ -37,27 +45,12 @@ tests = [{
   , e: {a: {s: {g: 1}}, b: 1}
 }, {
     m: 'a/*/g'
-  , o: {a: {
-           s: {g: 3}
-         , t: {g: 4}
-         , u: {z: 1}
-       }, b: 1}
-  , e: {a: {
-           s: {g: 3}
-         , t: {g: 4}
-       }}
+  , o: {a: {s: {g: 3}, t: {g: 4}, u: {z: 1}}, b: 1}
+  , e: {a: {s: {g: 3}, t: {g: 4}}}
 }, {
     m: 'a/*'
-  , o: {a: {
-           s: {g: 3}
-         , t: {g: 4}
-         , u: {z: 1}
-       }, b: 3}
-  , e: {a: {
-           s: {g: 3}
-         , t: {g: 4}
-         , u: {z: 1}
-       }}
+  , o: {a: {s: {g: 3}, t: {g: 4}, u: {z: 1}}, b: 3}
+  , e: {a: {s: {g: 3}, t: {g: 4}, u: {z: 1}}}
 }, {
     m: 'a(g)'
   , o: {a: [{g: 1, d: 2}, {g: 2, d: 3}]}
