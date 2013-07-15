@@ -1,4 +1,4 @@
-# JSON Mask [![Build Status](https://secure.travis-ci.org/nemtsov/json-mask.png)](http://travis-ci.org/nemtsov/json-mask)
+# JSON Mask [![Build Status](https://secure.travis-ci.org/nemtsov/json-mask.png)](http://travis-ci.org/nemtsov/json-mask) [![NPM version](https://badge.fury.io/js/json-mask.png)](http://badge.fury.io/js/json-mask)
 
 <img src="https://raw.github.com/nemtsov/json-mask/master/logo.png" align="right" width="267px" />
 
