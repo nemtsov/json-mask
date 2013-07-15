@@ -67,6 +67,25 @@ maskedObj = mask(originalObj, fields)
 assert.deepEqual(maskedObj, expectObj)
 ```
 
+## Installation
+
+```
+npm install json-mask
+```
+Note the lack of dependencies. That's a feature.
+
+
+## Usage
+
+```js
+var mask = require('json-mask')
+  , object
+  , fields
+  , maskedObject
+  
+maskedObject = mask(object, fields)
+```
+
 
 ## Syntax
 
@@ -77,8 +96,17 @@ The syntax is loosely based on XPath:
 - `a(b,c)` sub-selection will select many fields from a parent
 - ` a/*/c` the star `*` wildcard will select all items in a field
 
-
 Take a look at `test/index-test.js` for examples of all of these and more.
+
+## Grammar
+
+```
+  Props ::= Prop | Prop "," Props
+   Prop ::= Object | Array
+ Object ::= NAME | NAME "/" Object
+  Array ::= NAME "(" Props ")"
+   NAME ::= ? all visible characters ?
+```
 
 
 ## Partial Responses Server Example
