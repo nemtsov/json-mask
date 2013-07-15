@@ -9,15 +9,15 @@ var mask = require('json-mask')
 mask({p: {a: 1, b: 2}, z: 1}, 'p/a,z')  // {p: {a: 1}, z: 1}
 ```
 
-If you've ever used the Google APIs, and provided a `?fields=` query-string to get a 
-[Partial Response](https://developers.google.com/+/api/#partial-responses), you've 
-already used this language. The desire to have partial responses in 
+If you've used the Google APIs, and provided a `?fields=` query-string to get a
+[Partial Response](https://developers.google.com/+/api/#partial-responses), you've
+already used this language. The desire to have partial responses in
 my own Node.js-based HTTP services was the reason I wrote JSON Mask.
 
 *For [express](http://expressjs.com/) users, there's a
 [partial-response-middleware](https://github.com/nemtsov/partial-response-middleware).
 It will integrate with your existing services with no additional code 
-if you're using `res.json()` or `res.jsonp()`*
+if you're using `res.json()` or `res.jsonp()`.*
 
 This library has no dependencies; and that's a feature. It works in Node as well as in the browser:
 
