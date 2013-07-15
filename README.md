@@ -19,7 +19,7 @@ my own Node.js-based HTTP services was the reason I wrote JSON Mask.
 It will integrate with your existing services with no additional code 
 if you're using `res.json()` or `res.jsonp()`.*
 
-This library has no dependencies; and that's a feature. It works in Node as well as in the browser:
+This library has no dependencies. It works in Node as well as in the browser:
 
 [![browser support](https://ci.testling.com/nemtsov/json-mask.png)](https://ci.testling.com/nemtsov/json-mask)
 
