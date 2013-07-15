@@ -2,9 +2,21 @@
 
 <img src="/logo.png" align="right" width="267px" />
 
-Keep just the parts of a JS object that you want, chopping off the rest.
-Use the same simple language [Google APIs Partial Responses](https://developers.google.com/+/api/#partial-responses)
-use in the `?fields=` query-string to specify the mask.
+This is a tiny language and an engine for selecting specific parts of a JS object, hiding/masking the rest.
+
+If you've ever used the Google APIs, and provided a `?fields=` query-string to get a 
+[Partial Response](https://developers.google.com/+/api/#partial-responses), you've 
+already used this language. The desire to have partial responses in 
+my own Node.js-based HTTP services was the reason I wrote JSON Mask.
+
+*By the way, if you're using [express](http://expressjs.com/) and want Partial Responses, there's a middleware just for you.
+It's called [partial-response-middleware](https://github.com/nemtsov/partial-response-middleware),
+uses JSON Mask internally; and if you're using `res.json()` or `res.jsonp()` will integrate 
+with all of your existing services with no additional code.*
+
+This library works in Node as well as in the browser:
+
+[![browser support](https://ci.testling.com/nemtsov/json-mask.png)](https://ci.testling.com/nemtsov/json-mask)
 
 ### Example
 
