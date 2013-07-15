@@ -4,21 +4,50 @@
 
 This is a tiny language and an engine for selecting specific parts of a JS object, hiding/masking the rest.
 
+```js
+var mask = require('json-mask')
+mask({p: {a: 1, b: 2}, z: 1}, 'p/a,z')  // {p: {a: 1}, z: 1}
+```
+
 If you've ever used the Google APIs, and provided a `?fields=` query-string to get a 
 [Partial Response](https://developers.google.com/+/api/#partial-responses), you've 
 already used this language. The desire to have partial responses in 
 my own Node.js-based HTTP services was the reason I wrote JSON Mask.
 
-*By the way, if you're using [express](http://expressjs.com/) and want Partial Responses, there's a middleware just for you.
-It's called [partial-response-middleware](https://github.com/nemtsov/partial-response-middleware),
-uses JSON Mask internally; and if you're using `res.json()` or `res.jsonp()` will integrate 
-with all of your existing services with no additional code.*
+*For [express](http://expressjs.com/) users, there's a
+[partial-response-middleware](https://github.com/nemtsov/partial-response-middleware).
+It will integrate with your existing services with no additional code 
+if you're using `res.json()` or `res.jsonp()`*
 
-This library works in Node as well as in the browser:
+This library has no dependencies; and that's a feature. It works in Node as well as in the browser:
 
 [![browser support](https://ci.testling.com/nemtsov/json-mask.png)](https://ci.testling.com/nemtsov/json-mask)
 
-### Example
+## Syntax
+
+The syntax is loosely based on XPath:
+
+- ` a,b,c` comma-separated list will select multiple fields
+- ` a/b/c` path will select a field from its parent
+- `a(b,c)` sub-selection will select many fields from a parent
+- ` a/*/c` the star `*` wildcard will select all items in a field
+
+Take a look at `test/index-test.js` for examples of all of these and more.
+
+
+## Grammar
+
+```
+  Props ::= Prop | Prop "," Props
+   Prop ::= Object | Array
+ Object ::= NAME | NAME "/" Object
+  Array ::= NAME "(" Props ")"
+   NAME ::= ? all visible characters ?
+```
+
+
+
+## Examples
 
 Identify the fields you want to keep:
 ```js
@@ -67,49 +96,8 @@ maskedObj = mask(originalObj, fields)
 assert.deepEqual(maskedObj, expectObj)
 ```
 
-## Installation
 
-```
-npm install json-mask
-```
-Note the lack of dependencies. That's a feature.
-
-
-## Usage
-
-```js
-var mask = require('json-mask')
-  , object
-  , fields
-  , maskedObject
-  
-maskedObject = mask(object, fields)
-```
-
-
-## Syntax
-
-The syntax is loosely based on XPath:
-
-- ` a,b,c` comma-separated list will select multiple fields
-- ` a/b/c` path will select a field from its parent
-- `a(b,c)` sub-selection will select many fields from a parent
-- ` a/*/c` the star `*` wildcard will select all items in a field
-
-Take a look at `test/index-test.js` for examples of all of these and more.
-
-## Grammar
-
-```
-  Props ::= Prop | Prop "," Props
-   Prop ::= Object | Array
- Object ::= NAME | NAME "/" Object
-  Array ::= NAME "(" Props ")"
-   NAME ::= ? all visible characters ?
-```
-
-
-## Partial Responses Server Example
+### Partial Responses Server Example
 
 Here's an example of using `json-mask` to implement the
 [Google API Partial Response](https://developers.google.com/+/api/#partial-responses)
@@ -152,6 +140,8 @@ $ # Now, let's just get the first names directly as well as from aliases
 $ curl 'http://localhost:4000?fields=firstName,aliases(firstName)'
 {"firstName":"Mohandas","aliases":[{"firstName":"Mahatma"},{"firstName":"Bapu"}]}
 ```
+
+**Note:** a few more examples are in the `/example` folder.
 
 
 License
