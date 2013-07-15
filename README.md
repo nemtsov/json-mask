@@ -1,6 +1,6 @@
 # JSON Mask [![Build Status](https://secure.travis-ci.org/nemtsov/json-mask.png)](http://travis-ci.org/nemtsov/json-mask)
 
-<img src="/logo.png" align="right" width="267px" />
+<img src="https://raw.github.com/nemtsov/json-mask/master/logo.png" align="right" width="267px" />
 
 This is a tiny language and an engine for selecting specific parts of a JS object, hiding/masking the rest.
 
