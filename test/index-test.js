@@ -4,76 +4,88 @@ var mask = require('../lib')
   , tests
 
 tests = [{
-    o: {a: 1}
-  , m: ''
+    m: 'a'
+  , o: null
+  , e: null
+}, {
+    m: null
+  , o: {a: 1}
   , e: {a: 1}
 }, {
-    o: {a: 1, b: 1}
-  , m: 'a'
+    m: ''
+  , o: {a: 1}
   , e: {a: 1}
 }, {
-    o: {a: 1, b: 1, c: 1}
-  , m: 'a,b'
+    m: 'a'
+  , o: {a: 1, b: 1}
+  , e: {a: 1}
+}, {
+    m: 'a,b'
+  , o: {a: 1, b: 1, c: 1}
   , e: {a: 1, b: 1}
 }, {
-    o: {obj: {s: 1, t: 2}, b: 1}
-  , m: 'obj/s'
+    m: 'obj/s'
+  , o: {obj: {s: 1, t: 2}, b: 1}
   , e: {obj: {s: 1}}
 }, {
-    o: {arr: [{s: 1, t: 2}, {s: 2, t: 3}], b: 1}
-  , m: 'arr/s'
+    m: 'arr/s'
+  , o: {arr: [{s: 1, t: 2}, {s: 2, t: 3}], b: 1}
   , e: {arr: [{s: 1}, {s: 2}]}
 }, {
-    o: {a: {s: {g: 1, z: 1}}, t: 2, b: 1}
-  , m: 'a/s/g,b'
+    m: 'a/s/g,b'
+  , o: {a: {s: {g: 1, z: 1}}, t: 2, b: 1}
   , e: {a: {s: {g: 1}}, b: 1}
 }, {
-    o: {a: {
+    m: 'a/*/g'
+  , o: {a: {
            s: {g: 3}
          , t: {g: 4}
          , u: {z: 1}
        }, b: 1}
-  , m: 'a/*/g'
   , e: {a: {
            s: {g: 3}
          , t: {g: 4}
        }}
 }, {
-    o: {a: {
+    m: 'a/*'
+  , o: {a: {
            s: {g: 3}
          , t: {g: 4}
          , u: {z: 1}
        }, b: 3}
-  , m: 'a/*'
   , e: {a: {
            s: {g: 3}
          , t: {g: 4}
          , u: {z: 1}
        }}
 }, {
-    o: {a: [{g: 1, d: 2}, {g: 2, d: 3}]}
-  , m: 'a(g)'
+    m: 'a(g)'
+  , o: {a: [{g: 1, d: 2}, {g: 2, d: 3}]}
   , e: {a: [{g: 1}, {g: 2}]}
 }, {
-    o: {b: [{d: {g: {z: 22}, b: 34}}]}
-  , m: 'b(d/*/z)'
+    m: 'a,c'
+  , o: {a: [], c: {}}
+  , e: {a: [], c: {}}
+}, {
+    m: 'b(d/*/z)'
+  , o: {b: [{d: {g: {z: 22}, b: 34}}]}
   , e: {b: [{d: {g: {z: 22}}}]
     }
 }, {
-    o: {url: 1, id: '1', obj: {url: 'h', a: [{url: 1, z: 2}], c: 3}}
-  , m: 'url,obj(url,a/url)'
+    m: 'url,obj(url,a/url)'
+  , o: {url: 1, id: '1', obj: {url: 'h', a: [{url: 1, z: 2}], c: 3}}
   , e: {url: 1, obj: {url: 'h', a: [{url: 1}]}}
 }, {
-    o: fixture
-  , m: 'kind'
+    m: 'kind'
+  , o: fixture
   , e: {kind: 'plus#activity'}
 }, {
-    o: fixture
-  , m: 'object(objectType)'
+    m: 'object(objectType)'
+  , o: fixture
   , e: {object: {objectType: 'note'}}
 }, {
-    o: fixture
-  , m: 'url,object(content,attachments/url)'
+    m: 'url,object(content,attachments/url)'
+  , o: fixture
   , e: {
         url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL'
       , object: {
@@ -83,18 +95,14 @@ tests = [{
     }
 }]
 
-var result
-for (var i = 0; i < tests.length; i++) {
-  //if (i !== 4) continue
-  try {
-    result = mask(tests[i].o, tests[i].m)
-    assert.deepEqual(result, tests[i].e)
-  } catch (e) {
-    console.error('\nFailed: ' + tests[i].m)
-    console.log('\nReceived: \n' + JSON.stringify(result, true, 2))
-    console.log('\nExpected: \n' + JSON.stringify(tests[i].e, true, 2))
-    throw e
+describe('json-mask', function () {
+  var result, test, i
+  for (i = 0; i < tests.length; i++) {
+    (function (test) {
+      it('should mask ' + test.m, function () {
+        result = mask(test.o, test.m)
+        assert.deepEqual(result, test.e)
+      })
+    }(tests[i]))
   }
-}
-
-console.log('ok')
+})

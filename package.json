@@ -2,9 +2,11 @@
   "name": "json-mask",
   "version": "0.1.0",
   "description": "Filter our parts of JS objects by providing a mask string.",
-  "main": "lib",
+  "main": "lib/index",
   "scripts": {
-    "test": "node test/suite.js"
+    "test": "mocha",
+    "test-watch": "mocha -w -G -R min",
+    "test-cov": "istanbul cover _mocha"
   },
   "keywords": [
     "fields",
@@ -15,5 +17,19 @@
   "author": "nemtsov@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "mocha": "~1.12.0"
+  },
+  "testling": {
+    "browsers": [
+      "ie8",
+      "ie9",
+      "ie10",
+      "ff/15",
+      "chrome/20",
+      "opera/12",
+      "safari/5.1"
+    ],
+    "harness": "mocha",
+    "files": "test/*-test.js"
   }
 }

@@ -3,8 +3,6 @@ var filter = require('../lib/filter')
   , compiledMask
   , object
   , expected
-  , tests
-  , test
 
 //a,b(d/*/z,b(g)),c
 compiledMask = {
@@ -34,7 +32,7 @@ compiledMask = {
   c: {type: 'object'}
 }
 
-var obj = {
+object = {
   a: 11,
   n: 00,
   b: [{
@@ -46,7 +44,7 @@ var obj = {
   g: 99
 }
 
-assert.deepEqual(filter(obj, compiledMask), {
+expected = {
   a: 11,
   b: [{
     d: {
@@ -56,7 +54,10 @@ assert.deepEqual(filter(obj, compiledMask), {
     }
   }],
   c: 44
-})
+}
 
-console.log('ok')
-//console.log(JSON.stringify(out, true, 2))
+describe('filter', function () {
+  it('should filter object for a compiled mask', function () {
+    assert.deepEqual(filter(object, compiledMask), expected)
+  })
+})
