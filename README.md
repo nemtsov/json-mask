@@ -9,6 +9,16 @@ var mask = require('json-mask')
 mask({p: {a: 1, b: 2}, z: 1}, 'p/a,z')  // {p: {a: 1}, z: 1}
 ```
 
+The main difference between JSONPath / JSONSelect and this engine is that JSON Mask 
+**preserves the structure of the original input object**.
+Instead of returning an array of selected sub-elements (e.g. `[{a: 1}, {z: 1}]` from example above), 
+it filters-out the parts of the object that you don't need, 
+keeping the structure unchanged: `{p: {a: 1}, z: 1}`.
+
+This is important because JSON Mask was designed with HTTP resources in mind, 
+the structure of which I didin't want to change after the unwanted fields
+were masked / filtered.
+
 If you've used the Google APIs, and provided a `?fields=` query-string to get a
 [Partial Response](https://developers.google.com/+/api/#partial-responses), you've
 already used this language. The desire to have partial responses in
