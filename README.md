@@ -156,6 +156,15 @@ $ curl 'http://localhost:4000?fields=firstName,aliases(firstName)'
 **Note:** a few more examples are in the `/example` folder.
 
 
+CDN
+---
+
+**jsDelivr**
+  - `//cdn.jsdelivr.net/jsonmask/0.1.1a/jsonMask.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.1.1a/jsonMask.min.js`
+
+
+
 License
 -------
 
