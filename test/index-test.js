@@ -8,6 +8,14 @@ tests = [{
   , o: null
   , e: null
 }, {
+    m: 'a'
+  , o: {b: 1}
+  , e: null
+}, {
+    m: 'a'
+  , o: [{b: 1}]
+  , e: null
+}, {
     m: null
   , o: {a: 1}
   , e: {a: 1}
@@ -86,6 +94,10 @@ tests = [{
           , attachments: [{url: 'http://www.youtube.com/watch?v=dQw4w9WgXcQ'}]
         }
     }
+}, {
+    m: 'i'
+  , o: [{i: 1, o: 2}, {i: 2, o: 2}]
+  , e: [{i: 1}, {i: 2}]
 }]
 
 describe('json-mask', function () {

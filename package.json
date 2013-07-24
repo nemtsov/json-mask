@@ -1,6 +1,6 @@
 {
   "name": "json-mask",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
   "main": "lib/index",
   "scripts": {
