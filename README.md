@@ -25,7 +25,7 @@ already used this language. The desire to have partial responses in
 my own Node.js-based HTTP services was the reason I wrote JSON Mask.
 
 *For [express](http://expressjs.com/) users, there's a
-[partial-response-middleware](https://github.com/nemtsov/partial-response-middleware).
+[express-partial-response](https://github.com/nemtsov/express-partial-response).
 It will integrate with your existing services with no additional code 
 if you're using `res.json()` or `res.jsonp()`.*
 
