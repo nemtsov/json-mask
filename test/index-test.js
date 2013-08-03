@@ -1,6 +1,6 @@
 var mask = require('../lib')
   , assert = require('assert')
-  , fixture = require('./fixture/activities')
+  , fixture = require('./fixture/activities.json')
   , tests
 
 tests = [{
