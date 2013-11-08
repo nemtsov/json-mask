@@ -16,7 +16,7 @@ it filters-out the parts of the object that you don't need,
 keeping the structure unchanged: `{p: {a: 1}, z: 1}`.
 
 This is important because JSON Mask was designed with HTTP resources in mind, 
-the structure of which I didin't want to change after the unwanted fields
+the structure of which I didn't want to change after the unwanted fields
 were masked / filtered.
 
 If you've used the Google APIs, and provided a `?fields=` query-string to get a
