@@ -27,7 +27,8 @@ my own Node.js-based HTTP services was the reason I wrote JSON Mask.
 *For [express](http://expressjs.com/) users, there's an
 [express-partial-response](https://github.com/nemtsov/express-partial-response) middleware.
 It will integrate with your existing services with no additional code 
-if you're using `res.json()` or `res.jsonp()`.*
+if you're using `res.json()` or `res.jsonp()`. And if you're already using [koa](https://github.com/koajs/koa.git)
+check out the [koa-json-mask](https://github.com/nemtsov/koa-json-mask) middleware.*
 
 This library has no dependencies. It works in Node as well as in the browser:
 
