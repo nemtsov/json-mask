@@ -34,10 +34,10 @@ tests = {
 describe('compiler', function () {
   for (var name in tests) {
     if (!util.has(tests, name)) continue
-    (function (test) {
+    (function (name, test) {
       it('should compile ' + name, function () {
-        assert.deepEqual(compile(name), tests[name])
+        assert.deepEqual(compile(name), test)
       })
-    }(tests[name]))
+    }(name, tests[name]))
   }
 })
