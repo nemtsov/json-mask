@@ -13,6 +13,10 @@ tests = [{
   , e: null
 }, {
     m: 'a'
+  , o: {a: null, b: 1}
+  , e: {a: null}
+}, {
+    m: 'a'
   , o: [{b: 1}]
   , e: null
 }, {
