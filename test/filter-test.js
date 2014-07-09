@@ -51,8 +51,7 @@ expected = {
       g: {
         z: 22
       }
-    },
-    b: null
+    }
   }],
   c: 44
 }
