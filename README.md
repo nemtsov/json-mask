@@ -161,8 +161,8 @@ CDN
 ---
 
 **jsDelivr**
-  - `//cdn.jsdelivr.net/jsonmask/0.1.1a/jsonMask.js`
-  - `//cdn.jsdelivr.net/jsonmask/0.1.1a/jsonMask.min.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.3.0/jsonMask.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.3.0/jsonMask.min.js`
 
 
 
