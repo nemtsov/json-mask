@@ -42,5 +42,9 @@
     ],
     "harness": "mocha",
     "files": "test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nemtsov/json-mask.git"
   }
 }
