@@ -81,6 +81,10 @@ tests = [{
   , o: {url: 1, id: '1', obj: {url: 'h', a: [{url: 1, z: 2}], c: 3}}
   , e: {url: 1, obj: {url: 'h', a: [{url: 1}]}}
 }, {
+    m: '*(a,b)'
+  , o: {p1: {a: 1, b: 1, c: 1}, p2: {a: 2, b: 2, c: 2}}
+  , e: {p1: {a: 1, b: 1}, p2: {a: 2, b: 2}}
+}, {
     m: 'kind'
   , o: fixture
   , e: {kind: 'plus#activity'}
