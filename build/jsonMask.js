@@ -2,8 +2,8 @@
  * json-mask | (c) 2014 Yuriy Nemtsov | https://github.com/nemtsov/json-mask/blob/master/LICENSE
  * @license
  */
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.jsonMask=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
-var util = _dereq_('./util')
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.jsonMask=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var util = require('./util')
   , TERMINALS = {',': 1, '/': 2, '(': 3, ')': 4}
 
 module.exports = compile
@@ -105,8 +105,8 @@ function _addToken(token, props) {
   }
 }
 
-},{"./util":4}],2:[function(_dereq_,module,exports){
-var util = _dereq_('./util')
+},{"./util":4}],2:[function(require,module,exports){
+var util = require('./util')
 
 module.exports = filter
 
@@ -127,39 +127,32 @@ function _arrayProperties(arr, mask) {
 }
 
 function _properties(obj, mask) {
-  var maskedObj = {}
-    , key, value, ret, retKey
+  var maskedObj = {}, key, value, ret, retKey, typeFunc
   if (!obj || !mask) return obj
   for (key in mask) {
     if (!util.has(mask, key)) continue
     value = mask[key]
     ret = undefined
-    if ('object' === value.type) {
-      if ('*' === key) {
-        ret = _objectAll(obj, value.properties)
-        for (retKey in ret) {
-          if (!util.has(ret, retKey)) continue
-          maskedObj[retKey] = ret[retKey]
-        }
-        ret = undefined
-      } else {
-        ret = _object(obj, key, value.properties)
+    typeFunc = ('object' === value.type) ? _object : _array
+    if ('*' === key) {
+      ret = _forAll(obj, value.properties, typeFunc)
+      for (retKey in ret) {
+        if (!util.has(ret, retKey)) continue
+        maskedObj[retKey] = ret[retKey]
       }
-    } else if ('array' === value.type) {
-      ret = _array(obj, key, value.properties)
-    }
-    if ('undefined' !== typeof ret) {
-      maskedObj[key] = ret
+    } else {
+      ret = typeFunc(obj, key, value.properties)
+      if ('undefined' !== typeof ret) maskedObj[key] = ret
     }
   }
   return !util.isEmpty(maskedObj) ? maskedObj : undefined
 }
 
-function _objectAll(obj, mask) {
+function _forAll(obj, mask, fn) {
   var ret = {}, key, value
   for (key in obj) {
     if (!util.has(obj, key)) continue
-    value = _object(obj, key, mask)
+    value = fn(obj, key, mask)
     if (value) ret[key] = value
   }
   return ret
@@ -184,9 +177,9 @@ function _array(object, key, mask) {
   return ret.length ? ret : undefined
 }
 
-},{"./util":4}],3:[function(_dereq_,module,exports){
-var compile = _dereq_('./compiler')
-  , filter = _dereq_('./filter')
+},{"./util":4}],3:[function(require,module,exports){
+var compile = require('./compiler')
+  , filter = require('./filter')
 
 function mask(obj, mask) {
   return filter(obj, compile(mask)) || null
@@ -197,7 +190,7 @@ mask.filter = filter
 
 module.exports = mask
 
-},{"./compiler":1,"./filter":2}],4:[function(_dereq_,module,exports){
+},{"./compiler":1,"./filter":2}],4:[function(require,module,exports){
 var ObjProto = Object.prototype
 
 exports.isEmpty = isEmpty
@@ -220,6 +213,5 @@ function has(obj, key) {
   return ObjProto.hasOwnProperty.call(obj, key)
 }
 
-},{}]},{},[3])
-(3)
+},{}]},{},[3])(3)
 });
