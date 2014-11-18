@@ -165,6 +165,11 @@ CDN
   - `//cdn.jsdelivr.net/jsonmask/0.3.0/jsonMask.min.js`
 
 
+Bower
+-----
+
+`bower install json-mask`
+
 
 License
 -------
