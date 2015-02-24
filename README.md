@@ -161,8 +161,8 @@ CDN
 ---
 
 **jsDelivr**
-  - `//cdn.jsdelivr.net/jsonmask/0.3.0/jsonMask.js`
-  - `//cdn.jsdelivr.net/jsonmask/0.3.0/jsonMask.min.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.3.4/jsonMask.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.3.4/jsonMask.min.js`
 
 
 Bower
@@ -174,4 +174,4 @@ Bower
 License
 -------
 
-MIT. See LICENSE
+[MIT](/LICENSE)
