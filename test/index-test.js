@@ -113,10 +113,10 @@ tests = [{
 }]
 
 describe('json-mask', function () {
-  var result, test, i
+  var result, i
   for (i = 0; i < tests.length; i++) {
     (function (test) {
-      it('should mask ' + test.m, function () {
+      it('should mask ' + test.m + ' in test #' + i, function () {
         result = mask(test.o, test.m)
         assert.deepEqual(result, test.e)
       })
