@@ -115,6 +115,14 @@ tests = [{
   , o: { foo: 1234 }
   , e: null
 }, {
+    m: 'foo(bar)'
+  , o: { foo: { biz: 'baz' } }
+  , e: { foo: {} },
+}, {
+    m: 'foobar,foobiz'
+  , o: { foobar: { foo: 'bar' }, foobiz: undefined }
+  , e: { foobar: { foo: 'bar' } }
+}, {
     m: 'a'
   , o: { a: [0, 0] }
   , e: { a: [0, 0] }
