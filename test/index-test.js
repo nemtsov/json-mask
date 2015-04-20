@@ -110,6 +110,10 @@ tests = [{
     m: 'i'
   , o: [{i: 1, o: 2}, {i: 2, o: 2}]
   , e: [{i: 1}, {i: 2}]
+}, {
+    m: 'foo(bar)'
+  , o: { foo: 1234 }
+  , e: null
 }]
 
 describe('json-mask', function () {
