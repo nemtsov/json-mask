@@ -24,7 +24,10 @@
   "author": "nemtsov@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.12.0"
+    "browserify": "^10.2.6",
+    "istanbul": "^0.3.17",
+    "mocha": "~1.12.0",
+    "uglifyjs": "^2.4.10"
   },
   "testling": {
     "browsers": [
