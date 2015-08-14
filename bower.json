@@ -1,6 +1,6 @@
 {
   "name": "json-mask",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "homepage": "https://github.com/nemtsov/json-mask",
   "authors": ["Yuriy Nemtsov <nemtsov@gmail.com>"],
   "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
