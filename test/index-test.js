@@ -3,6 +3,11 @@ var mask = require('../lib')
   , fixture = require('./fixture/activities.json')
   , tests
 
+function A() {
+  this.a = 3;
+  this.b = 4;
+}
+
 tests = [{
     m: 'a'
   , o: null
@@ -10,7 +15,7 @@ tests = [{
 }, {
     m: 'a'
   , o: {b: 1}
-  , e: null
+  , e: {}
 }, {
     m: 'a'
   , o: {a: null, b: 1}
@@ -18,7 +23,7 @@ tests = [{
 }, {
     m: 'a'
   , o: [{b: 1}]
-  , e: null
+  , e: [{}]
 }, {
     m: null
   , o: {a: 1}
@@ -62,7 +67,7 @@ tests = [{
 }, {
     m: 'a/*/g'
   , o: {a: {s: {g: 3}, t: {g: 4}, u: {z: 1}}, b: 1}
-  , e: {a: {s: {g: 3}, t: {g: 4}}}
+  , e: {a: {s: {g: 3}, t: {g: 4}, u: {}}}
 }, {
     m: 'a/*'
   , o: {a: {s: {g: 3}, t: {g: 4}, u: {z: 1}}, b: 3}
@@ -112,8 +117,8 @@ tests = [{
   , e: [{i: 1}, {i: 2}]
 }, {
     m: 'foo(bar)'
-  , o: { foo: 1234 }
-  , e: null
+  , o: { foo: { biz: 'bar'} }
+  , e: { foo: {} }
 }, {
     m: 'foo(bar)'
   , o: { foo: { biz: 'baz' } }
@@ -123,6 +128,14 @@ tests = [{
   , o: { foobar: { foo: 'bar' }, foobiz: undefined }
   , e: { foobar: { foo: 'bar' } }
 }, {
+    m: 'foobar'
+  , o: { foo: 'bar' }
+  , e: {}
+}, {
+    m: 'foobar'
+  , o: [{ biz: 'baz' }]
+  , e: [{}]
+}, {
     m: 'a'
   , o: { a: [0, 0] }
   , e: { a: [0, 0] }
@@ -130,6 +143,10 @@ tests = [{
     m: 'a'
   , o: { a: [1, 0, 1] }
   , e: { a: [1, 0, 1] }
+}, {
+    m: 'a/b'
+  , o: { a: new A() }
+  , e: { a: { b: 4 } }
 }]
 
 describe('json-mask', function () {
@@ -138,7 +155,7 @@ describe('json-mask', function () {
     (function (test) {
       it('should mask ' + test.m + ' in test #' + i, function () {
         result = mask(test.o, test.m)
-        assert.deepEqual(result, test.e)
+        assert.deepStrictEqual(result, test.e)
       })
     }(tests[i]))
   }
