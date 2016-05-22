@@ -2,7 +2,7 @@
  * json-mask | (c) 2015 Yuriy Nemtsov | https://github.com/nemtsov/json-mask/blob/master/LICENSE
  * @license
  */
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.jsonMask=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jsonMask = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var util = require('./util')
   , TERMINALS = {',': 1, '/': 2, '(': 3, ')': 4}
 
@@ -127,8 +127,12 @@ function _arrayProperties(arr, mask) {
 }
 
 function _properties(obj, mask) {
-  var maskedObj = {}, key, value, ret, retKey, typeFunc
+  var maskedObj, key, value, ret, retKey, typeFunc
   if (!obj || !mask) return obj
+
+  if (util.isArray(obj)) maskedObj = []
+  else if (util.isObject(obj)) maskedObj = {}
+
   for (key in mask) {
     if (!util.has(mask, key)) continue
     value = mask[key]
@@ -145,7 +149,7 @@ function _properties(obj, mask) {
       if ('undefined' !== typeof ret) maskedObj[key] = ret
     }
   }
-  return !util.isEmpty(maskedObj) ? maskedObj : undefined
+  return maskedObj
 }
 
 function _forAll(obj, mask, fn) {
@@ -167,12 +171,12 @@ function _object(obj, key, mask) {
 function _array(object, key, mask) {
   var ret = [], arr = object[key]
     , i, l, obj, maskedObj
-  if (util.isEmpty(arr)) return arr
   if (!util.isArray(arr)) return _properties(arr, mask)
+  if (util.isEmpty(arr)) return arr
   for (i = 0, l = arr.length; i < l; i++) {
     obj = arr[i]
     maskedObj = _properties(obj, mask)
-    if (maskedObj) ret.push(maskedObj)
+    if ('undefined' !== typeof maskedObj) ret.push(maskedObj)
   }
   return ret.length ? ret : undefined
 }
@@ -195,6 +199,7 @@ var ObjProto = Object.prototype
 
 exports.isEmpty = isEmpty
 exports.isArray = Array.isArray || isArray
+exports.isObject = isObject
 exports.has = has
 
 function isEmpty(obj) {
@@ -207,6 +212,10 @@ function isEmpty(obj) {
 
 function isArray(obj) {
   return ObjProto.toString.call(obj) == '[object Array]'
+}
+
+function isObject(obj) {
+  return typeof obj === 'function' || typeof obj === 'object' && !!obj;
 }
 
 function has(obj, key) {
