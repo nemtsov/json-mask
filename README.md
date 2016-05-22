@@ -102,11 +102,9 @@ var expectObj = {
 Let's test that:
 ```js
 var mask = require('json-mask')
-  , assert = require('assert')
-  , maskedObj
+var assert = require('assert')
 
-maskedObj = mask(originalObj, fields)
-
+var maskedObj = mask(originalObj, fields)
 assert.deepEqual(maskedObj, expectObj)
 ```
 
@@ -118,22 +116,22 @@ Here's an example of using `json-mask` to implement the
 
 ```js
 var http = require('http')
-  , url = require('url')
-  , mask = require('json-mask')
-  , server
+var url = require('url')
+var mask = require('json-mask')
+var server
 
 server = http.createServer(function (req, res) {
   var fields = url.parse(req.url, true).query.fields
-    , data = {
-          firstName: 'Mohandas'
-        , lastName: 'Gandhi'
-        , aliases: [{
-              firstName: 'Mahatma'
-            , lastName: 'Gandhi'
-          }, {
-              firstName: 'Bapu'
-          }]
-      }
+  var data = {
+    firstName: 'Mohandas',
+    lastName: 'Gandhi',
+    aliases: [{
+      firstName: 'Mahatma',
+      lastName: 'Gandhi'
+    }, {
+      firstName: 'Bapu'
+    }]
+  }
   res.writeHead(200, {'Content-Type': 'application/json'})
   res.end(JSON.stringify(mask(data, fields)))
 })
@@ -162,8 +160,8 @@ CDN
 ---
 
 **jsDelivr**
-  - `//cdn.jsdelivr.net/jsonmask/0.3.5/jsonMask.js`
-  - `//cdn.jsdelivr.net/jsonmask/0.3.5/jsonMask.min.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.3.8/jsonMask.js`
+  - `//cdn.jsdelivr.net/jsonmask/0.3.8/jsonMask.min.js`
 
 
 Bower
