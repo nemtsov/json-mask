@@ -1,12 +1,13 @@
 {
   "name": "json-mask",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
   "main": "lib/index",
   "scripts": {
-    "test": "mocha",
+    "test": "npm run lint && mocha",
     "test-watch": "mocha -w -G -R min",
     "test-cov": "istanbul cover _mocha",
+    "lint": "standard 'lib/**/*.js' 'test/**/*.js'",
     "build-browser": "npm run-script _build-browser-full; npm run-script _build-browser-license; npm run-script _build-browser-min",
     "_build-browser-full": "browserify -s jsonMask -e lib/index.js | sed -e \"s/\\[ *'.*' *\\]/;/\" > build/jsonMask.js",
     "_build-browser-license": "cat build/copyright  | cat - build/jsonMask.js  | tee build/jsonMask.js",
@@ -27,6 +28,7 @@
     "browserify": "^10.2.6",
     "istanbul": "^0.3.17",
     "mocha": "~1.12.0",
+    "standard": "^7.1.0",
     "uglifyjs": "^2.4.10"
   },
   "testling": {

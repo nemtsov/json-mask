@@ -1,10 +1,12 @@
-var filter = require('../lib/filter')
-  , assert = require('assert')
-  , compiledMask
-  , object
-  , expected
+/* global describe, it */
 
-//a,b(d/*/z,b(g)),c
+var filter = require('../lib/filter')
+var assert = require('assert')
+var compiledMask
+var object
+var expected
+
+// a,b(d/*/z,b(g)),c
 compiledMask = {
   a: {type: 'object'},
   b: {
@@ -34,7 +36,7 @@ compiledMask = {
 
 object = {
   a: 11,
-  n: 00,
+  n: 0,
   b: [{
     d: {g: {z: 22}, b: 34, c: {a: 32}},
     b: [{z: 33}],

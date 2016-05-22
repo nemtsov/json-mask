@@ -1,4 +1,5 @@
-# JSON Mask [![Build Status](https://secure.travis-ci.org/nemtsov/json-mask.png)](http://travis-ci.org/nemtsov/json-mask) [![NPM version](https://badge.fury.io/js/json-mask.png)](http://badge.fury.io/js/json-mask)
+# JSON Mask [![Build Status](https://img.shields.io/travis/nemtsov/json-mask.svg)](http://travis-ci.org/nemtsov/json-mask) [![NPM version](https://img.shields.io/npm/v/json-mask.svg)](https://www.npmjs.com/package/json-mask) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 
 <img src="https://raw.github.com/nemtsov/json-mask/master/logo.png" align="right" width="267px" />
 
