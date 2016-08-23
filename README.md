@@ -31,9 +31,7 @@ It will integrate with your existing services with no additional code
 if you're using `res.json()` or `res.jsonp()`. And if you're already using [koa](https://github.com/koajs/koa.git)
 check out the [koa-json-mask](https://github.com/nemtsov/koa-json-mask) middleware.*
 
-This library has no dependencies. It works in Node as well as in the browser:
-
-[![browser support](https://ci.testling.com/nemtsov/json-mask.png)](https://ci.testling.com/nemtsov/json-mask)
+This library has no dependencies. It works in Node as well as in the browser.
 
 **Note:** the 1.5KB (gz), or 4KB (uncompressed) browser build is in the `/build` folder.
 
