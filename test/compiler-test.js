@@ -30,6 +30,14 @@ tests = {
       b: {type: 'object'}
     }},
     c: {type: 'object'}
+  },
+  '*,-a': {
+    '*': {type: 'object'},
+    '-a': {type: 'object'}
+  },
+  '-a,*': {
+    '-a': {type: 'object'},
+    '*': {type: 'object'}
   }
 }
 

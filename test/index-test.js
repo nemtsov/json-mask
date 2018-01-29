@@ -148,6 +148,10 @@ tests = [{
   m: 'a/b',
   o: {a: new A()},
   e: {a: { b: 4 }}
+}, {
+  m: 'a(-a,*),b(*,-c)',
+  o: {a: {a: 1, b: 2, c: 3}, b: {a: 1, b: 2, c: 3}},
+  e: {a: {b: 2, c: 3}, b: {a: 1, b: 2}}
 }]
 
 describe('json-mask', function () {
