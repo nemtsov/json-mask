@@ -50,11 +50,12 @@ Take a look at `test/index-test.js` for examples of all of these and more.
 ## Grammar
 
 ```
-  Props ::= Prop | Prop "," Props
-   Prop ::= Object | Array
- Object ::= NAME | NAME "/" Object
-  Array ::= NAME "(" Props ")"
-   NAME ::= ? all visible characters ?
+   Props ::= Prop | Prop "," Props
+    Prop ::= Object | Array
+  Object ::= NAME | NAME "/" Object
+Function ::= NAME "!" | NAME.NESTED "!"
+   Array ::= NAME "(" Props ")"
+    NAME ::= ? all visible characters ?
 ```
 
 
@@ -63,12 +64,19 @@ Take a look at `test/index-test.js` for examples of all of these and more.
 
 Identify the fields you want to keep:
 ```js
-var fields = 'url,object(content,attachments/url)'
+var fields = 'name.full!,url,object(content,attachments/url)'
 ```
 
 From this sample object:
 ```js
 var originalObj = {
+  name: {
+    first: 'John',
+    last: 'Wayne',
+    full: function() {
+      return `${this.first} ${this.last}`
+    },
+  },
   id: 'z12gtjhq3qn2xxl2o224exwiqruvtda0i',
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
@@ -87,6 +95,7 @@ var originalObj = {
 Here's what you'll get back:
 ```js
 var expectObj = {
+  name: 'John Wayne',
   url: 'https://plus.google.com/102817283354809142195/posts/F97fqZwJESL',
   object: {
     content: 'A picture... of a space ship... launched from earth 40 years ago.',
