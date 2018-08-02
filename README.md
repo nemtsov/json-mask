@@ -169,10 +169,6 @@ $ curl 'http://localhost:4000?fields=firstName,aliases(firstName)'
 - `https://unpkg.com/json-mask/build/jsonMask.js`
 - `https://unpkg.com/json-mask/build/jsonMask.min.js`
 
-## Bower
-
-`bower install json-mask`
-
 ## License
 
 [MIT](/LICENSE)
