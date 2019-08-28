@@ -30,6 +30,14 @@ tests = {
       b: {type: 'object'}
     }},
     c: {type: 'object'}
+  },
+  'a(b/c),d': {
+    a: {type: 'array', properties: {
+      b: {type: 'object', properties: {
+        c: {type: 'object'}
+      }}
+    }},
+    d: {type: 'object'}
   }
 }
 
