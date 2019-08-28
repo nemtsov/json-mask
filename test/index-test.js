@@ -95,6 +95,10 @@ tests = [{
   o: {p1: {a: 1, b: 1, c: 1}, p2: {a: 2, b: 2, c: 2}},
   e: {p1: {a: 1, b: 1}, p2: {a: 2, b: 2}}
 }, {
+  m: 'a(b/c),e',
+  o: {a: [{b: {c: 1}}, {d: 2}], e: 3, f: 4, g: 5},
+  e: {a: [{b: {c: 1}}, {}], e: 3}
+}, {
   m: 'kind',
   o: fixture,
   e: {kind: 'plus#activity'}
