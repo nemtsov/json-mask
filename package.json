@@ -27,7 +27,7 @@
   "devDependencies": {
     "browserify": "^16.2.2",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
+    "mocha": "^6.2.1",
     "standard": "^7.1.0",
     "uglifyjs": "^2.4.10"
   },
