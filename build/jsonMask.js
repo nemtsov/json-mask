@@ -2,9 +2,9 @@
  * json-mask | (c) 2015 Yuriy Nemtsov | https://github.com/nemtsov/json-mask/blob/master/LICENSE
  * @license
  */
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jsonMask = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jsonMask = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var util = require('./util')
-var TERMINALS = {',': 1, '/': 2, '(': 3, ')': 4}
+var TERMINALS = { ',': 1, '/': 2, '(': 3, ')': 4 }
 
 module.exports = compile
 
@@ -40,7 +40,7 @@ function scan (text) {
 
   function maybePushName () {
     if (!name) return
-    tokens.push({tag: '_n', value: name})
+    tokens.push({ tag: '_n', value: name })
     name = ''
   }
 
@@ -48,7 +48,7 @@ function scan (text) {
     ch = text.charAt(i)
     if (TERMINALS[ch]) {
       maybePushName()
-      tokens.push({tag: ch})
+      tokens.push({ tag: ch })
     } else {
       name += ch
     }
@@ -98,7 +98,7 @@ function _buildTree (tokens, parent, stack) {
 }
 
 function _addToken (token, props) {
-  props[token.value] = {type: token.type}
+  props[token.value] = { type: token.type }
   if (!util.isEmpty(token.properties)) {
     props[token.value].properties = token.properties
   }
@@ -118,10 +118,12 @@ function filter (obj, compiledMask) {
 // wrap array & mask in a temp object;
 // extract results from temp at the end
 function _arrayProperties (arr, mask) {
-  var obj = _properties({_: arr}, {_: {
-    type: 'array',
-    properties: mask
-  }})
+  var obj = _properties({ _: arr }, {
+    _: {
+      type: 'array',
+      properties: mask
+    }
+  })
   return obj && obj._
 }
 
@@ -220,7 +222,7 @@ function isArray (obj) {
 }
 
 function isObject (obj) {
-  return typeof obj === 'function' || typeof obj === 'object' && !!obj
+  return (typeof obj === 'function') || (typeof obj === 'object' && !!obj)
 }
 
 function has (obj, key) {

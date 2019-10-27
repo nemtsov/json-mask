@@ -8,7 +8,7 @@ var expected
 
 // a,b(d/*/z,b(g)),c
 compiledMask = {
-  a: {type: 'object'},
+  a: { type: 'object' },
   b: {
     type: 'array',
     properties: {
@@ -18,7 +18,7 @@ compiledMask = {
           '*': {
             type: 'object',
             properties: {
-              z: {type: 'object'}
+              z: { type: 'object' }
             }
           }
         }
@@ -26,20 +26,20 @@ compiledMask = {
       b: {
         type: 'array',
         properties: {
-          g: {type: 'object'}
+          g: { type: 'object' }
         }
       }
     }
   },
-  c: {type: 'object'}
+  c: { type: 'object' }
 }
 
 object = {
   a: 11,
   n: 0,
   b: [{
-    d: {g: {z: 22}, b: 34, c: {a: 32}},
-    b: [{z: 33}],
+    d: { g: { z: 22 }, b: 34, c: { a: 32 } },
+    b: [{ z: 33 }],
     k: 99
   }],
   c: 44,
@@ -62,6 +62,6 @@ expected = {
 
 describe('filter', function () {
   it('should filter object for a compiled mask', function () {
-    assert.deepEqual(filter(object, compiledMask), expected)
+    assert.deepStrictEqual(filter(object, compiledMask), expected)
   })
 })
