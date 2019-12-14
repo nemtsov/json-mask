@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run lint && mocha",
     "test-watch": "mocha -w -G -R min",
-    "test-cov": "istanbul cover _mocha",
+    "test-cov": "nyc --reporter=html --reporter=text mocha",
     "lint": "standard 'lib/**/*.js' 'test/**/*.js'",
     "build-browser": "npm run-script _build-browser-full; npm run-script _build-browser-license; npm run-script _build-browser-min",
     "_build-browser-full": "browserify -s jsonMask -e lib/index.js | sed -e \"s/\\[ *'.*' *\\]/;/\" > build/jsonMask.js",
@@ -26,8 +26,8 @@
   "license": "MIT",
   "devDependencies": {
     "browserify": "^16.5.0",
-    "istanbul": "^0.4.5",
     "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
     "standard": "^14.3.1",
     "uglifyjs": "^2.4.11"
   },
