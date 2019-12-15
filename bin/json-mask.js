@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 const mask = require('../')
+const fs = require('fs')
+const { promisify } = require('util')
+
+const readFile = promisify(fs.readFile)
+
+const missingInput = () => new Error('Either pipe input into json-mask or specify a file as second argument')
 
 function usage (error) {
   error && console.error(error.message)
@@ -8,7 +14,7 @@ function usage (error) {
   console.log('  json-mask "url,object(content,attachments/url)" input.json')
   console.log('  cat input.json | json-mask "url,object(content,attachments/url)"')
   console.log('  curl https://api.myjson.com/bins/krrxw | json-mask "url,object(content,attachments/url)"')
-  process.exit(error ? 1 : 0)
+  process.exit(1)
 }
 
 function pipeInput() {
@@ -17,45 +23,28 @@ function pipeInput() {
     process.stdin.setEncoding('utf8')
 
     let data = ''
-    
+
     process.stdin.on('data', chunk => {
       data += chunk
     })
-    
+
     process.stdin.on('end', () => {
-      resolve(data)
+      data ? resolve(data) : reject(missingInput())
     })
-    
+
     process.stdin.on('error', reject)
   })
 }
 
-function readInputFile (inputFile, resolve, reject) {
-  const fs = require('fs').promises
-  const path = require('path')
-  return fs.readFile(path.resolve(inputFile), { encoding: 'UTF-8' })
-}
-
-function getInput (inputFile) {
-  if (!process.stdin.isTTY) {
+function getInput (inputFilePath) {
+  if (inputFilePath) {
+    return readFile(inputFilePath, { encoding: 'UTF-8' })
+  } else if (!process.stdin.isTTY) {
     return pipeInput()
-  } else if (inputFile) {
-    return readInputFile(inputFile)
   } else {
-    Promise.reject(new Error('Either pipe input into json-mask or specify a file as second argument'))
+    return Promise.reject(missingInput())
   }
 }
-
-const parseInput = input => JSON.parse(input)
-
-const maskInput = fields => {
-  if (!fields) {
-    throw new Error('Fields argument missing')
-  }
-  return input => mask(input, fields)
-}
-
-const writeOutput = output => output && console.log(JSON.stringify(output))
 
 /**
  * Runs the command line filter
@@ -63,12 +52,15 @@ const writeOutput = output => output && console.log(JSON.stringify(output))
  * @param {String} fields to mask
  * @param {String} inputFilePath absolute or relative path for input file to read
  */
-function run (fields, inputFilePath) {
-  return getInput(inputFilePath)
-    .then(parseInput)
-    .then(maskInput(fields))
+async function run (fields, inputFilePath) {
+  if (!fields) {
+    throw new Error("Fields argument missing")
+  }
+  const input = await getInput(inputFilePath)
+  const json = JSON.parse(input)
+  const masked = mask(json, fields)
+  console.log(JSON.stringify(masked))
 }
 
 run(process.argv[2], process.argv[3])
-  .then(writeOutput)
   .catch(usage)
