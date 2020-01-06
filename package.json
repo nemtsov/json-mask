@@ -26,7 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "browserify": "^16.5.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.0",
     "nyc": "^14.1.1",
     "standard": "^14.3.1",
     "uglifyjs": "^2.4.11"
