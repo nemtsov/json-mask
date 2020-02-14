@@ -162,6 +162,26 @@ $ curl 'http://localhost:4000?fields=firstName,aliases(firstName)'
 
 **Note:** a few more examples are in the `/example` folder.
 
+## Command Line Interface - CLI
+
+When installed globally using `npm i -g json-mask` you can use it like:
+
+`json-mask "<fields>" <input> [<output>]`
+
+### Examples
+
+Stream from online resource:
+
+`curl https://api.myjson.com/bins/krrxw | json-mask "url,object(content,attachments/url)"`
+
+Read from file and write to output file:
+
+`json-mask "url,object(content,attachments/url)" input.json > output.json`
+
+Read from file and print redirect to file:
+
+`json-mask "url,object(content,attachments/url)" input.json > output.json`
+
 ## CDN
 
 **unpkg**

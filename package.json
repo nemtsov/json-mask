@@ -5,6 +5,7 @@
   "main": "lib/index",
   "scripts": {
     "test": "npm run lint && mocha",
+    "test:all": "nve 8 10 12 \"*\" mocha",
     "test-watch": "mocha -w -G -R min",
     "test-cov": "nyc --reporter=html --reporter=text mocha",
     "lint": "standard 'lib/**/*.js' 'test/**/*.js'",
@@ -13,6 +14,10 @@
     "_build-browser-license": "cat build/copyright  | cat - build/jsonMask.js  | tee build/jsonMask.js",
     "_build-browser-min": "cat build/jsonMask.js | uglifyjs --comments > build/jsonMask.min.js"
   },
+  "bin": "bin/json-mask.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "keywords": [
     "mask",
     "filter",
@@ -20,13 +25,15 @@
     "fields",
     "projection",
     "query",
-    "json"
+    "json",
+    "cli"
   ],
   "author": "nemtsov@gmail.com",
   "license": "MIT",
   "devDependencies": {
     "browserify": "^16.5.0",
     "mocha": "^6.2.2",
+    "nve": "^8.3.0",
     "nyc": "^14.1.1",
     "standard": "^14.3.1",
     "uglifyjs": "^2.4.11"
