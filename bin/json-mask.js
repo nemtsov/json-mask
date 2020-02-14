@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-const mask = require('../')
+const mask = require('../lib')
 const fs = require('fs')
 const { promisify } = require('util')
 
 const readFile = promisify(fs.readFile)
-
 const missingInput = () => new Error('Either pipe input into json-mask or specify a file as second argument')
 
 function usage (error) {
-  error && console.error(error.message)
+  if (error) console.error(error.message)
   console.log('Usage: json-mask <fields> [input.json]')
   console.log('Examples:')
   console.log('  json-mask "url,object(content,attachments/url)" input.json')
@@ -17,33 +16,23 @@ function usage (error) {
   process.exit(1)
 }
 
-function pipeInput() {
+function pipeInput () {
   return new Promise((resolve, reject) => {
     process.stdin.resume()
     process.stdin.setEncoding('utf8')
 
     let data = ''
-
-    process.stdin.on('data', chunk => {
-      data += chunk
-    })
-
-    process.stdin.on('end', () => {
-      data ? resolve(data) : reject(missingInput())
-    })
+    process.stdin.on('data', chunk => (data += chunk))
+    process.stdin.on('end', () => data ? resolve(data) : reject(missingInput()))
 
     process.stdin.on('error', reject)
   })
 }
 
 function getInput (inputFilePath) {
-  if (inputFilePath) {
-    return readFile(inputFilePath, { encoding: 'UTF-8' })
-  } else if (!process.stdin.isTTY) {
-    return pipeInput()
-  } else {
-    return Promise.reject(missingInput())
-  }
+  if (inputFilePath) return readFile(inputFilePath, { encoding: 'UTF-8' })
+  if (!process.stdin.isTTY) return pipeInput()
+  return Promise.reject(missingInput())
 }
 
 /**
@@ -53,9 +42,7 @@ function getInput (inputFilePath) {
  * @param {String} inputFilePath absolute or relative path for input file to read
  */
 async function run (fields, inputFilePath) {
-  if (!fields) {
-    throw new Error("Fields argument missing")
-  }
+  if (!fields) throw new Error('Fields argument missing')
   const input = await getInput(inputFilePath)
   const json = JSON.parse(input)
   const masked = mask(json, fields)
