@@ -8,7 +8,7 @@
     "test:all": "nve 8 10 12 \"*\" mocha",
     "test-watch": "mocha -w -G -R min",
     "test-cov": "nyc --reporter=html --reporter=text mocha",
-    "lint": "standard 'lib/**/*.js' 'test/**/*.js'",
+    "lint": "standard 'lib/**/*.js' 'test/**/*.js' 'bin/**/*.js'",
     "build-browser": "npm run-script _build-browser-full; npm run-script _build-browser-license; npm run-script _build-browser-min",
     "_build-browser-full": "browserify -s jsonMask -e lib/index.js | sed -e \"s/\\[ *'.*' *\\]/;/\" > build/jsonMask.js",
     "_build-browser-license": "cat build/copyright  | cat - build/jsonMask.js  | tee build/jsonMask.js",
