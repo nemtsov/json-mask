@@ -5,7 +5,7 @@
   "main": "lib/index",
   "scripts": {
     "test": "npm run lint && mocha",
-    "test:all": "nve 8 10 12 \"*\" mocha",
+    "test:all": "nve --parallel 8,10,12,14 mocha",
     "test-watch": "mocha -w -G -R min",
     "test-cov": "nyc --reporter=html --reporter=text mocha",
     "lint": "standard 'lib/**/*.js' 'test/**/*.js' 'bin/**/*.js'",
@@ -31,12 +31,12 @@
   "author": "nemtsov@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^16.5.0",
-    "mocha": "^7.0.1",
+    "browserify": "^16.5.2",
+    "mocha": "^7.2.0",
     "nve": "^13.0.0",
-    "nyc": "^15.0.0",
-    "standard": "^14.3.1",
-    "uglify-js": "^3.7.7"
+    "nyc": "^15.1.0",
+    "standard": "^14.3.4",
+    "uglify-js": "^3.10.4"
   },
   "testling": {
     "browsers": [
