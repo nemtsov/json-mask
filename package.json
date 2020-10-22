@@ -35,7 +35,7 @@
     "mocha": "^7.2.0",
     "nve": "^13.0.0",
     "nyc": "^15.1.0",
-    "standard": "^14.3.4",
+    "standard": "^15.0.0",
     "uglify-js": "^3.10.4"
   },
   "testling": {
