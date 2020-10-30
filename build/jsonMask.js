@@ -59,36 +59,30 @@ function scan (text) {
 }
 
 function parse (tokens) {
-  return _buildTree(tokens, {}, [])
+  return _buildTree(tokens, {})
 }
 
-function _buildTree (tokens, parent, stack) {
+function _buildTree (tokens, parent) {
   var props = {}
   var token
-  var peek
 
   while ((token = tokens.shift())) {
     if (token.tag === '_n') {
       token.type = 'object'
-      token.properties = _buildTree(tokens, token, stack)
-      // exit if in object stack
-      peek = stack[stack.length - 1]
-      if (peek && (peek.tag === '/')) {
-        stack.pop()
+      token.properties = _buildTree(tokens, token)
+      if (parent.hasChild) {
         _addToken(token, props)
         return props
       }
     } else if (token.tag === ',') {
       return props
     } else if (token.tag === '(') {
-      stack.push(token)
       parent.type = 'array'
       continue
     } else if (token.tag === ')') {
-      stack.pop(token)
       return props
     } else if (token.tag === '/') {
-      stack.push(token)
+      parent.hasChild = true
       continue
     }
     _addToken(token, props)
