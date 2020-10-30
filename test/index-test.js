@@ -148,11 +148,31 @@ tests = [{
   m: 'a/b',
   o: { a: new A() },
   e: { a: { b: 4 } }
+}, {
+  m: 'a(b/c),e',
+  o: { a: [{ b: { c: 1 } }, { d: 2 }], e: 3, f: 4, g: 5 },
+  e: { a: [{ b: { c: 1 } }, {}], e: 3 }
+}, {
+  m: 'a(b/c/d),e',
+  o: { a: [{ b: { c: { d: 1 } } }, { d: 2 }], e: 3, f: 4, g: 5 },
+  e: { a: [{ b: { c: { d: 1 } } }, {}], e: 3 }
+}, {
+  m: 'beta(first,second/third),cappa(first,second/third)',
+  o: {
+    alpha: 3,
+    beta: { first: 'fv', second: { third: 'tv', fourth: 'fv' } },
+    cappa: { first: 'fv', second: { third: 'tv', fourth: 'fv' } }
+  },
+  e: {
+    beta: { first: 'fv', second: { third: 'tv' } },
+    cappa: { first: 'fv', second: { third: 'tv' } }
+  }
 }]
 
 describe('json-mask', function () {
   var result, i
   for (i = 0; i < tests.length; i++) {
+  // for (i = tests.length - 1; i < tests.length; i++) {
     (function (test) {
       it('should mask ' + test.m + ' in test #' + i, function () {
         result = mask(test.o, test.m)

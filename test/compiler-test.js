@@ -45,6 +45,74 @@ tests = {
       }
     },
     c: { type: 'object' }
+  },
+  'a(b/c,e)': {
+    a: {
+      type: 'array',
+      properties: {
+        b: {
+          type: 'object',
+          properties: {
+            c: { type: 'object' }
+          }
+        },
+        e: { type: 'object' }
+      }
+    }
+  },
+  'a(b/c),e': {
+    a: {
+      type: 'array',
+      properties: {
+        b: {
+          type: 'object',
+          properties: {
+            c: { type: 'object' }
+          }
+        }
+      }
+    },
+    e: { type: 'object' }
+  },
+  'a(b/c/d),e': {
+    a: {
+      type: 'array',
+      properties: {
+        b: {
+          type: 'object',
+          properties: {
+            c: {
+              type: 'object',
+              properties: {
+                d: { type: 'object' }
+              }
+            }
+          }
+        }
+      }
+    },
+    e: { type: 'object' }
+  },
+  'a(b/g(c)),e': {
+    a: {
+      type: 'array',
+      properties: {
+        b: {
+          type: 'object',
+          properties: {
+            g: {
+              type: 'array',
+              properties: {
+                c: {
+                  type: 'object'
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    e: { type: 'object' }
   }
 }
 
