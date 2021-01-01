@@ -3,6 +3,11 @@
   "version": "1.0.4",
   "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
   "main": "lib/index",
+  "files":[
+    "bin",
+    "build",
+    "lib"
+  ],
   "scripts": {
     "test": "npm run lint && mocha",
     "test:all": "nve --parallel 8,10,12,14 mocha",
