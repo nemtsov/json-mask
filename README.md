@@ -50,7 +50,7 @@ Take a look at `test/index-test.js` for examples of all of these and more.
 ```
   Props ::= Prop | Prop "," Props
    Prop ::= Object | Array
- Object ::= NAME | NAME "/" Object
+ Object ::= NAME | NAME "/" Prop
   Array ::= NAME "(" Props ")"
    NAME ::= ? all visible characters ?
 ```
