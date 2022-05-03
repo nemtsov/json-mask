@@ -167,6 +167,50 @@ tests = [{
     beta: { first: 'fv', second: { third: 'tv' } },
     cappa: { first: 'fv', second: { third: 'tv' } }
   }
+}, {
+  m: 'beta(first,second\\/third),cappa(first,second\\/third)',
+  o: {
+    alpha: 3,
+    beta: { first: 'fv', 'second/third': 'tv', third: { fourth: 'fv' } },
+    cappa: { first: 'fv', 'second/third': 'tv', third: { fourth: 'fv' } }
+  },
+  e: {
+    beta: { first: 'fv', 'second/third': 'tv' },
+    cappa: { first: 'fv', 'second/third': 'tv' }
+  }
+}, {
+  m: '\\*',
+  o: {
+    '*': 101,
+    beta: 'hidden'
+  },
+  e: {
+    '*': 101
+  }
+}, {
+  m: 'first(\\*)',
+  o: {
+    first: {
+      '*': 101,
+      beta: 'hidden'
+    }
+  },
+  e: {
+    first: {
+      '*': 101
+    }
+  }
+}, {
+  m: 'some,\\*',
+  o: {
+    '*': 101,
+    beta: 'hidden',
+    some: 'visible'
+  },
+  e: {
+    '*': 101,
+    some: 'visible'
+  }
 }]
 
 describe('json-mask', function () {

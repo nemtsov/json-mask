@@ -18,6 +18,7 @@ tests = {
       properties: {
         '*': {
           type: 'object',
+          filter: true,
           properties: {
             c: { type: 'object' }
           }
@@ -35,6 +36,7 @@ tests = {
           properties: {
             '*': {
               type: 'object',
+              filter: true,
               properties: {
                 g: { type: 'object' }
               }
@@ -113,6 +115,46 @@ tests = {
       }
     },
     e: { type: 'object' }
+  },
+  'a\\/b\\/c': {
+    'a/b/c': {
+      type: 'object'
+    }
+  },
+  'a\\(b\\)c': {
+    'a(b)c': {
+      type: 'object'
+    }
+  },
+  'a\\bc': {
+    abc: {
+      type: 'object'
+    }
+  },
+  '\\*': {
+    '*': {
+      type: 'object'
+    }
+  },
+  '*': {
+    '*': {
+      type: 'object',
+      filter: true
+    }
+  },
+  '*(a,b,\\*,\\(,\\),\\,)': {
+    '*': {
+      type: 'array',
+      filter: true,
+      properties: {
+        a: { type: 'object' },
+        b: { type: 'object' },
+        '*': { type: 'object' },
+        '(': { type: 'object' },
+        ')': { type: 'object' },
+        ',': { type: 'object' },
+      }
+    }
   }
 }
 
