@@ -1,11 +1,11 @@
 {
   "name": "json-mask",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
   "main": "lib/index",
   "scripts": {
     "test": "npm run lint && mocha",
-    "test:all": "nve --parallel 8,10,12,14 mocha",
+    "test:all": "nve --parallel 14,16,18 mocha",
     "test-watch": "mocha -w -G -R min",
     "test-cov": "nyc --reporter=html --reporter=text mocha",
     "lint": "standard 'lib/**/*.js' 'test/**/*.js' 'bin/**/*.js'",
@@ -16,7 +16,7 @@
   },
   "bin": "bin/json-mask.js",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=14.0.0"
   },
   "keywords": [
     "mask",
@@ -32,36 +32,20 @@
   "license": "MIT",
   "devDependencies": {
     "browserify": "^17.0.0",
-    "mocha": "^8.2.0",
-    "nve": "^13.0.0",
+    "mocha": "^10.0.0",
+    "nve": "^14.0.0",
     "nyc": "^15.1.0",
     "standard": "^15.0.1",
-    "uglify-js": "^3.11.4"
+    "uglify-js": "^3.15.4"
   },
   "eslintConfig": {
     "rules": {
       "no-var": "off"
     }
   },
-  "testling": {
-    "browsers": [
-      "ie/8..latest",
-      "firefox/16..latest",
-      "firefox/nightly",
-      "chrome/22..latest",
-      "chrome/canary",
-      "opera/12..latest",
-      "opera/next",
-      "safari/5.1..latest",
-      "ipad/6.0..latest",
-      "iphone/6.0..latest",
-      "android-browser/4.2..latest"
-    ],
-    "harness": "mocha",
-    "files": "test/*.js"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/nemtsov/json-mask.git"
-  }
+  },
+  "dependencies": {}
 }
