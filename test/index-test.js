@@ -211,6 +211,17 @@ tests = [{
     '*': 101,
     some: 'visible'
   }
+}, {
+  m: 'some,\\\\',
+  o: {
+    '\\': 120,
+    beta: 'hidden',
+    some: 'visible'
+  },
+  e: {
+    '\\': 120,
+    some: 'visible'
+  }
 }]
 
 describe('json-mask', function () {

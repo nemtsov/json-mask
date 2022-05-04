@@ -152,8 +152,18 @@ tests = {
         '*': { type: 'object' },
         '(': { type: 'object' },
         ')': { type: 'object' },
-        ',': { type: 'object' },
+        ',': { type: 'object' }
       }
+    }
+  },
+  '\\\\': {
+    '\\': {
+      type: 'object'
+    }
+  },
+  'foo*bar': {
+    'foo*bar': {
+      type: 'object'
     }
   }
 }
