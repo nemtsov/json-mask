@@ -115,7 +115,7 @@ assert.deepEqual(maskedObj, expectObj);
 ### Partial Responses Server Example
 
 Here's an example of using `json-mask` to implement the
-[Google API Partial Response](https://developers.google.com/+/api/#partial-responses)
+[Google API Partial Response](https://developers.google.com/gdata/docs/2.0/reference#PartialResponse)
 
 ```js
 var http = require('http');
