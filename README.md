@@ -20,7 +20,7 @@ the structure of which I didn't want to change after the unwanted fields
 were masked / filtered.
 
 If you've used the Google APIs, and provided a `?fields=` query-string to get a
-[Partial Response](https://developers.google.com/+/api/#partial-responses), you've
+[Partial Response](https://developers.google.com/gdata/docs/2.0/reference#PartialResponse), you've
 already used this language. The desire to have partial responses in
 my own Node.js-based HTTP services was the reason I wrote JSON Mask.
 
