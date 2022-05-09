@@ -126,6 +126,7 @@ tests = {
       type: 'object'
     }
   },
+  // escaped b (`\b`) in our language resolves to `b` character.
   'a\\bc': {
     abc: {
       type: 'object'
@@ -163,6 +164,13 @@ tests = {
   },
   'foo*bar': {
     'foo*bar': {
+      type: 'object'
+    }
+  },
+  // mask `\n`, should not resolve in a new line,
+  // because we simply escape "n" character which has no meaning in our language
+  '\\n': {
+    n: {
       type: 'object'
     }
   }
