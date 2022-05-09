@@ -52,9 +52,9 @@ Take a look at `test/index-test.js` for examples of all of these and more.
       Prop ::= Object | Array
     Object ::= NAME | NAME "/" Prop
      Array ::= NAME "(" Props ")"
-      NAME ::= ? all visible characters ? | EscapeSeq | Wildcard
+      NAME ::= ? all visible characters except "\" ? | EscapeSeq | Wildcard
   Wildcard ::= "*"
- EscapeSeq ::= "\" ("," | "*" | "/" | "(" | ")")
+ EscapeSeq ::= "\" ? all visible characters ?
 ```
 
 ## Examples
