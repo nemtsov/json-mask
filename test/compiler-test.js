@@ -173,6 +173,11 @@ tests = {
     n: {
       type: 'object'
     }
+  },
+  'multi\nline': {
+    'multi\nline': {
+      type: 'object'
+    }
   }
 }
 

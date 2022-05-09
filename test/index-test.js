@@ -222,6 +222,21 @@ tests = [{
     '\\': 120,
     some: 'visible'
   }
+}, {
+  m: 'multi\nline(a)',
+  o: {
+    multi: 130,
+    line: 131,
+    'multi\nline': {
+      a: 135,
+      b: 134
+    }
+  },
+  e: {
+    'multi\nline': {
+      a: 135
+    }
+  }
 }]
 
 describe('json-mask', function () {
