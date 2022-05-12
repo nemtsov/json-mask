@@ -168,6 +168,10 @@ tests = [{
     cappa: { first: 'fv', second: { third: 'tv' } }
   }
 }, {
+  m: 'a\\/b',
+  o: { 'a/b': 1, c: 2 },
+  e: { 'a/b': 1 }
+}, {
   m: 'beta(first,second\\/third),cappa(first,second\\/third)',
   o: {
     alpha: 3,
@@ -180,71 +184,40 @@ tests = [{
   }
 }, {
   m: '\\*',
-  o: {
-    '*': 101,
-    beta: 'hidden'
-  },
-  e: {
-    '*': 101
-  }
+  o: { '*': 101, beta: 'hidden' },
+  e: { '*': 101 }
 }, {
   m: 'first(\\*)',
-  o: {
-    first: {
-      '*': 101,
-      beta: 'hidden'
-    }
-  },
-  e: {
-    first: {
-      '*': 101
-    }
-  }
+  o: { first: { '*': 101, beta: 'hidden' } },
+  e: { first: { '*': 101 } }
 }, {
   m: 'some,\\*',
-  o: {
-    '*': 101,
-    beta: 'hidden',
-    some: 'visible'
-  },
-  e: {
-    '*': 101,
-    some: 'visible'
-  }
+  o: { '*': 101, beta: 'hidden', some: 'visible' },
+  e: { '*': 101, some: 'visible' }
 }, {
   m: 'some,\\\\',
-  o: {
-    '\\': 120,
-    beta: 'hidden',
-    some: 'visible'
-  },
-  e: {
-    '\\': 120,
-    some: 'visible'
-  }
+  o: { '\\': 120, beta: 'hidden', some: 'visible' },
+  e: { '\\': 120, some: 'visible' }
 }, {
   m: 'multi\nline(a)',
-  o: {
-    multi: 130,
-    line: 131,
-    'multi\nline': {
-      a: 135,
-      b: 134
-    }
-  },
-  e: {
-    'multi\nline': {
-      a: 135
-    }
-  }
+  o: { multi: 130, line: 131, 'multi\nline': { a: 135, b: 134 } },
+  e: { 'multi\nline': { a: 135 } }
+}, {
+  m: 'a*',
+  o: { 'a*': 1, b: 2 },
+  e: { 'a*': 1 }
+}, {
+  m: '*a',
+  o: { '*a': 1, b: 2 },
+  e: { '*a': 1 }
 }]
 
 describe('json-mask', function () {
   var result, i
   for (i = 0; i < tests.length; i++) {
-  // for (i = tests.length - 1; i < tests.length; i++) {
     (function (test) {
-      it('should mask ' + test.m + ' in test #' + i, function () {
+      var testFunc = (test.__only) ? it.only : it
+      testFunc('should mask ' + test.m + ' in test #' + i, function () {
         result = mask(test.o, test.m)
         assert.deepStrictEqual(result, test.e)
       })

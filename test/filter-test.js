@@ -17,7 +17,7 @@ compiledMask = {
         properties: {
           '*': {
             type: 'object',
-            filter: true,
+            isWildcard: true,
             properties: {
               z: { type: 'object' }
             }

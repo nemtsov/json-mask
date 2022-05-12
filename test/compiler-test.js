@@ -18,7 +18,7 @@ tests = {
       properties: {
         '*': {
           type: 'object',
-          filter: true,
+          isWildcard: true,
           properties: {
             c: { type: 'object' }
           }
@@ -36,7 +36,7 @@ tests = {
           properties: {
             '*': {
               type: 'object',
-              filter: true,
+              isWildcard: true,
               properties: {
                 g: { type: 'object' }
               }
@@ -140,13 +140,13 @@ tests = {
   '*': {
     '*': {
       type: 'object',
-      filter: true
+      isWildcard: true
     }
   },
   '*(a,b,\\*,\\(,\\),\\,)': {
     '*': {
       type: 'array',
-      filter: true,
+      isWildcard: true,
       properties: {
         a: { type: 'object' },
         b: { type: 'object' },
