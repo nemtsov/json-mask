@@ -18,6 +18,7 @@ tests = {
       properties: {
         '*': {
           type: 'object',
+          isWildcard: true,
           properties: {
             c: { type: 'object' }
           }
@@ -35,6 +36,7 @@ tests = {
           properties: {
             '*': {
               type: 'object',
+              isWildcard: true,
               properties: {
                 g: { type: 'object' }
               }
@@ -113,6 +115,69 @@ tests = {
       }
     },
     e: { type: 'object' }
+  },
+  'a\\/b\\/c': {
+    'a/b/c': {
+      type: 'object'
+    }
+  },
+  'a\\(b\\)c': {
+    'a(b)c': {
+      type: 'object'
+    }
+  },
+  // escaped b (`\b`) in our language resolves to `b` character.
+  'a\\bc': {
+    abc: {
+      type: 'object'
+    }
+  },
+  '\\*': {
+    '*': {
+      type: 'object'
+    }
+  },
+  '*': {
+    '*': {
+      type: 'object',
+      isWildcard: true
+    }
+  },
+  '*(a,b,\\*,\\(,\\),\\,)': {
+    '*': {
+      type: 'array',
+      isWildcard: true,
+      properties: {
+        a: { type: 'object' },
+        b: { type: 'object' },
+        '*': { type: 'object' },
+        '(': { type: 'object' },
+        ')': { type: 'object' },
+        ',': { type: 'object' }
+      }
+    }
+  },
+  '\\\\': {
+    '\\': {
+      type: 'object'
+    }
+  },
+  'foo*bar': {
+    'foo*bar': {
+      type: 'object'
+    }
+  },
+  // mask `\n`, should not resolve in a new line,
+  // because we simply escape "n" character which has no meaning in our language
+  '\\n': {
+    n: {
+      type: 'object'
+    }
+  },
+  'multi\nline': {
+    'multi\nline': {
+      type: 'object'
+    }
   }
 }
 

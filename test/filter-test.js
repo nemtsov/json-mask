@@ -17,6 +17,7 @@ compiledMask = {
         properties: {
           '*': {
             type: 'object',
+            isWildcard: true,
             properties: {
               z: { type: 'object' }
             }
@@ -31,7 +32,9 @@ compiledMask = {
       }
     }
   },
-  c: { type: 'object' }
+  c: { type: 'object' },
+  'd/e': { type: 'object' },
+  '*': { type: 'object' }
 }
 
 object = {
@@ -43,7 +46,9 @@ object = {
     k: 99
   }],
   c: 44,
-  g: 99
+  g: 99,
+  'd/e': 101,
+  '*': 110
 }
 
 expected = {
@@ -57,7 +62,9 @@ expected = {
     },
     b: [{}]
   }],
-  c: 44
+  c: 44,
+  'd/e': 101,
+  '*': 110
 }
 
 describe('filter', function () {

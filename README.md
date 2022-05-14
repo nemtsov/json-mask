@@ -48,11 +48,13 @@ Take a look at `test/index-test.js` for examples of all of these and more.
 ## Grammar
 
 ```
-  Props ::= Prop | Prop "," Props
-   Prop ::= Object | Array
- Object ::= NAME | NAME "/" Prop
-  Array ::= NAME "(" Props ")"
-   NAME ::= ? all visible characters ?
+     Props ::= Prop | Prop "," Props
+      Prop ::= Object | Array
+    Object ::= NAME | NAME "/" Prop
+     Array ::= NAME "(" Props ")"
+      NAME ::= ? all visible characters except "\" ? | EscapeSeq | Wildcard
+  Wildcard ::= "*"
+ EscapeSeq ::= "\" ? all visible characters ?
 ```
 
 ## Examples
@@ -110,6 +112,28 @@ var assert = require('assert');
 
 var maskedObj = mask(originalObj, fields);
 assert.deepEqual(maskedObj, expectObj);
+```
+
+### Escaping
+
+It is also possible to get keys that contain `,*()/` using `\` (backslash) as escape character.
+
+```json
+{
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/name": "mysql",
+      "location": "WH1"
+    }
+  }
+}
+```
+
+You can filter out the location property by `metadata(labels(app.kubernetes.io\/name))` mask.
+
+NOTE: In [JavaScript String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#escape_sequences) you must escape backslash with another backslash:
+```js
+var fields = 'metadata(labels(app.kubernetes.io\\/name))'
 ```
 
 ### Partial Responses Server Example
