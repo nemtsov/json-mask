@@ -3,10 +3,12 @@
   "version": "2.0.0",
   "description": "Tiny language and engine for selecting specific parts of a JS object, hiding the rest.",
   "main": "lib/index",
+  "types": "./types/index.d.ts",
   "files": [
     "bin",
     "build",
-    "lib"
+    "lib",
+    "types"
   ],
   "scripts": {
     "test": "npm run lint && mocha",
