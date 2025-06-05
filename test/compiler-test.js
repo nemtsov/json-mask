@@ -167,6 +167,11 @@ tests = {
       type: 'object'
     }
   },
+  'foo\\': {
+    'foo\\': {
+      type: 'object'
+    }
+  },
   // mask `\n`, should not resolve in a new line,
   // because we simply escape "n" character which has no meaning in our language
   '\\n': {
