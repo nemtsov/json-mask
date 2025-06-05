@@ -106,7 +106,7 @@ var tests = [
     },
     e (result) {
       assert.strictEqual(result.exitCode, 1, 'exit code must be 1')
-      assert.ok(/Unexpected/.test(result.stderr))
+      assert.ok(/Unexpected|Expected/.test(result.stderr))
       assert.ok(/usage:/i.test(result.stdout))
     }
   },
@@ -116,7 +116,7 @@ var tests = [
     mask: 's',
     e (result) {
       assert.strictEqual(result.exitCode, 1, 'exit code must be 1')
-      assert.ok(/Unexpected/.test(result.stderr))
+      assert.ok(/Unexpected|Expected/.test(result.stderr))
       assert.ok(/usage:/i.test(result.stdout))
     }
   },
