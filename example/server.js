@@ -20,7 +20,7 @@ server = http.createServer(function (req, res) {
 
 server.listen(4000, function () {
   var prefix = 'curl \'http://localhost:4000%s?fields=%s\''
-  console.log('Server runnong on :4000, try the following:')
+  console.log('Server running on :4000, try the following:')
   console.log(prefix, '/', 'title')
   console.log(prefix, '/', 'kind,updated')
   console.log(prefix, '/', 'url,object(content,attachments/url)')
